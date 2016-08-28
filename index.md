@@ -1,0 +1,69 @@
+---
+title       : Binomial and Poisson Distribution Confidence level investigation
+subtitle    : 
+author      : Lizy
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+--- 
+
+## Just a facking intro deck
+ 
+1. App location : XXXX
+
+2. Motivation: 
+With regard for learning the meaning of confidence interval, I spent a fair amount of time to understand the meaning of confidence interval for inferring them based on a small sample. Therefore I built this application, hopefully it would help people understanding the corresponding meaning of confidence interval more easier. 
+
+3. Implementation:
+The application provides two kinds of distribution, the Binomial and Poisson. 
+In both implementation, there is a slidebar to control the confidence level.
+Two extra inputs are provided for users to describe the attributes of the sample data.
+
+---
+
+## Example usage of the application
+The code in the following slide would demonstrate an example of how to use the binomial page. 
+
+1. The user need to input the whole number of observations and the number of events that happened. With this sample, the application is able to calculate the sample extimate probability value for event happening.   
+
+2. With the confidence level set through slider, the application is able to calculate the lower and higher range for the probability value of event happening.  
+
+3. Then three probability density curves are plotted based on the three values calculated previously. 
+
+---
+
+## R code for ploting Binomial result
+
+```r
+require(ggplot2)
+bModel <- binom.test(10, 50, conf.level = .9)
+confRange <- bModel$conf.int
+x <- c(0:50)
+lowRandom <- dbinom(x, 50, confRange[1])
+sampleRandom <- dbinom(x, 50, bModel$estimate)
+highRandom <- dbinom(x, 50, confRange[2])
+        
+biDfLow <- data.frame(numberOfEventsHappens = x, probability = lowRandom, conf = "LowProb")
+biDfEst <- data.frame(numberOfEventsHappens=x, probability = sampleRandom, conf = "EstimateProb")
+biDfHigh <- data.frame( numberOfEventsHappens=x, probability = highRandom, conf="HighProb")
+biDf <- rbind(biDfLow, biDfEst, biDfHigh)
+        
+ggplot(biDf, aes(x = numberOfEventsHappens, y = probability, colour = conf)) + geom_line()
+```
+
+---
+
+## R plot for ploting Binomial result
+
+<img src="assets/fig/simple-plot-1.png" title="plot of chunk simple-plot" alt="plot of chunk simple-plot" style="display: block; margin: auto;" />
+
+---
+
+
+
+
+
