@@ -1,5 +1,5 @@
 ---
-title       : Binomial and Poisson Distribution Confidence level investigation
+title       : Binomial and Poisson Distribution Demonstration
 subtitle    : 
 author      : Lizy
 job         : 
@@ -11,9 +11,9 @@ mode        : selfcontained # {standalone, draft}
 knit        : slidify::knit2slides
 --- 
 
-## Just a facking intro deck
+## Introduction
  
-1. App location : XXXX
+1. App location : lizy.shinyapps.io/assign_app/
 
 2. Motivation: 
 With regard for learning the meaning of confidence interval, I spent a fair amount of time to understand the meaning of confidence interval for inferring them based on a small sample. Therefore I built this application, hopefully it would help people understanding the corresponding meaning of confidence interval more easier. 
@@ -33,6 +33,8 @@ The code in the following slide would demonstrate an example of how to use the b
 2. With the confidence level set through slider, the application is able to calculate the lower and higher range for the probability value of event happening.  
 
 3. Then three probability density curves are plotted based on the three values calculated previously. 
+
+4. The poisson distribution works similar.
 
 ---
 
